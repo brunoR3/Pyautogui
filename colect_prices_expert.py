@@ -1,6 +1,11 @@
 import pyautogui
 import time
 import os
+from os import environ
+from dotenv import load_dotenv
+
+# Carrega as variáveis de ambiente de um arquivo .env
+load_dotenv()
 
 # Caminho do ERP
 erp_path = r'C:\Atx\AtxExec.exe'
@@ -14,14 +19,16 @@ time.sleep(10)
 # Passo 2: Mover o mouse e clicar no campo de login
 # Substitua os valores (x, y) pelas coordenadas do campo de login
 pyautogui.click(x=808, y=588)  # Coordenadas do campo de login
-pyautogui.write('user') 
+# Obtem o usuário da variável de ambiente ERP_USER
+pyautogui.write(environ.get('ERP_USER', ''))
 
 # Aguarda um momento
 time.sleep(5)
 
 # Substitua os valores (x, y) pelas coordenadas do campo de senha
 pyautogui.click(x=809, y=634)  # Coordenadas do campo de senha
-pyautogui.write('senha')    # Digitar a senha
+# Obtem a senha da variável de ambiente ERP_PASSWORD
+pyautogui.write(environ.get('ERP_PASSWORD', ''))    # Digitar a senha
 
 # Aguarda um momento
 time.sleep(5)
